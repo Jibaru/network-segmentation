@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Segmentación por Hosts</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Segmentación por Hosts</h1>
+      <form id="form">
+        <label for="ip">IP</label>
+        <input type="text" name="ip" placeholder="160.10.0.0" />
+        <label for="ip">Hosts</label>
+        <textarea
+          name="hosts"
+          cols="30"
+          rows="10"
+          placeholder="Economia,120&#10;Contabilidad,50&#10;Logistica,25&#10;Carreras,14&#10;Tesoreria,7&#10;Otic,5"
+        ></textarea>
+        <button>Procesar</button>
+      </form>
+      <table id="table-results">
+        <thead>
+          <th>Nombre de subred</th>
+          <th>Hosts solicitados</th>
+          <th>Dirección de subred</th>
+          <th>Primera IP disponible (incluye router)</th>
+          <th>Última IP disponible</th>
+          <th>Broadcast</th>
+          <th>Puerta de enlace (router)</th>
+          <th>Máscara de subred</th>
+          <th>Sufijo de máscara</th>
+        </thead>
+        <tbody id="results"></tbody>
+      </table>
+    </main>
+    <script src="js/app.js" type="module"></script>
+  </body>
+</html>
