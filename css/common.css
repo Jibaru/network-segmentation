@@ -1,0 +1,84 @@
+:root {
+  --background-color: rgb(32, 27, 27);
+  --alert-color: rgb(199, 43, 43);
+  --font-color: #fff;
+  --button-color: rgb(100, 90, 241);
+  --thead-color: rgb(49, 91, 129);
+  --table-color: rgb(27, 75, 121);
+  --box-shadow: 2px 2px 2px 2px rgb(14, 13, 13);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: monospace !important;
+  color: var(--font-color);
+  margin-bottom: 0.5rem !important;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+main {
+  padding: 2rem 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+p {
+  font-size: 1rem;
+}
+
+textarea,
+input {
+  width: 100%;
+  border: 1px solid rgb(230, 220, 220);
+  box-shadow: var(--box-shadow);
+  background-color: var(--background-color);
+  padding: 0.5rem;
+}
+
+button {
+  background-color: var(--button-color);
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+table {
+  background-color: var(--table-color);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  overflow-x: auto;
+}
+
+thead {
+  background-color: var(--thead-color);
+  font-weight: bold;
+}
+
+td,
+th {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid rgb(167, 147, 147);
+}
+
+li {
+  list-style: inside;
+}
+
+hr {
+  margin: 2rem 0;
+}
