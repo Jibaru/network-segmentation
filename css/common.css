@@ -3,6 +3,7 @@
   --alert-color: rgb(199, 43, 43);
   --font-color: #fff;
   --button-color: rgb(100, 90, 241);
+  --disabled-button-color: rgb(81, 79, 102);
   --thead-color: rgb(49, 91, 129);
   --table-color: rgb(27, 75, 121);
   --box-shadow: 2px 2px 2px 2px rgb(14, 13, 13);
@@ -55,6 +56,11 @@ button {
   background-color: var(--button-color);
   padding: 1rem 2rem;
   cursor: pointer;
+}
+
+button:disabled {
+  background-color: var(--disabled-button-color);
+  cursor: default;
 }
 
 table {

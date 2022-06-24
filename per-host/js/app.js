@@ -1,16 +1,24 @@
+import { Excel } from "../../js/models/excel.model.js";
 import { parseHosts } from "../../js/parsers/hosts-parser.js";
 import { parseIp } from "../../js/parsers/ip-parser.js";
+import { XlsxBuilder } from "../../js/utils/xlsx/xlsx-builder.js";
+import { downloadXlsx } from "../../js/utils/xlsx/xlsx-downloader.js";
 import { isValidHostsInput } from "../../js/validators/hosts-input-validator.js";
 import { isValidIPInput } from "../../js/validators/ip-input-validator.js";
 import { TableRowBuilder } from "./builders/table-row-builder.js";
 
 const formElement = document.getElementById("form");
+const btnDownloadExcelElement = document.getElementById("download-excel");
 const tableBodyElement = document.getElementById("results");
 const tableResultsElement = document.getElementById("table-results");
 
 const App = {
+  state: {
+    currentTableRows: [],
+  },
   init() {
     this.showTable(false);
+    this.enableDownloadExcelButton(false);
     this.listen();
   },
   listen() {
@@ -54,9 +62,46 @@ const App = {
           return tableRow;
         });
 
+      this.state.currentTableRows = tableRows;
+
       this.clearTable();
       this.fillTable(tableRows);
       this.showTable(true);
+      this.enableDownloadExcelButton(true);
+    });
+
+    btnDownloadExcelElement.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const excel = new Excel([
+        "Nombre de subred",
+        "Hosts solicitados",
+        "Dirección de subred",
+        "Primera IP disponible (incluye router)",
+        "Última IP disponible",
+        "Broadcast",
+        "Puerta de enlace (router",
+        "Máscara de subred",
+        "Sufijo de máscara",
+      ]);
+
+      this.state.currentTableRows.forEach((tableRow) => {
+        excel.appendRow([
+          tableRow.name,
+          tableRow.hostsRequired,
+          tableRow.fromIP,
+          tableRow.firstIP,
+          tableRow.lastIP,
+          tableRow.broadcastIP,
+          tableRow.defaultGateway,
+          tableRow.submask,
+          tableRow.submaskSuffix,
+        ]);
+      });
+
+      const xlsx = new XlsxBuilder(excel).build();
+
+      downloadXlsx(xlsx);
     });
   },
   clearTable() {
@@ -107,6 +152,9 @@ const App = {
 
       tableBodyElement.appendChild(tr);
     });
+  },
+  enableDownloadExcelButton(enable) {
+    btnDownloadExcelElement.disabled = !enable;
   },
 };
 
